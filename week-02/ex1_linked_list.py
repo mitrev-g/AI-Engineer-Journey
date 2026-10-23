@@ -143,7 +143,7 @@ class LinkedList():
         return res
     def reverse(self):
         '''
-        Reverses the order of the linked list.
+        Reverses the order of the linked list. O(n)
         '''
         prev = None # previous on 1st iter is None
         curr = self.head # node 0
@@ -158,7 +158,7 @@ class LinkedList():
         self.tail = head
         self.head = tail
         
-        return self
+        
 
 
             
@@ -205,3 +205,7 @@ if __name__ == "__main__":
     ll = make(1, 2);    assert ll.remove(9) is False; assert len(ll) == 2             # missing
     assert LinkedList().remove(1) is False                                             # empty
     print(ll.reverse())
+    ll = make(1, 2, 3); ll.reverse(); assert ll.to_list() == [3, 2, 1]
+    ll.append(4);       assert ll.to_list() == [3, 2, 1, 4]   # tail updated?
+    ll = make(1);       ll.reverse(); assert ll.to_list() == [1]
+    ll = LinkedList();  ll.reverse(); assert ll.to_list() == []
