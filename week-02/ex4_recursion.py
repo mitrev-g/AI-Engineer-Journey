@@ -34,9 +34,27 @@ def _sum_from(nums, i):
 
     return _sum_from(nums, i + 1) + nums[i]
 
-
+# We need 2 variables to track the time and space complexity
+# n = total elements at every level, numbers and inner lists included
+# d = maximum depth of nested lists
+# Time Complexity - O(n x d) or O(n^2) if d grows with n, each next element adds another layer in depth,
+# because each number is copied once per nesting level on its way up.
+# Space Complexity - O(n + d) = O(n) - number of res lists that live at the same time is equal to the amount of
+# active stack frames(d) + n - the total times of calculating res - for each element at every level of every nested or non-nested list 
 def flatten(nested):
-    raise NotImplementedError
+  '''
+  Return a new flat list of every value inside nested, at any depth, left to right.
+  Anything that isn't a list (including strings) is treated as a single value; strings are out of scope.
+  '''
+  res = []
+  for el in nested:
+    if type(el) is not list:
+      res.append(el)
+    else:
+      res.extend(flatten(el))
+      
+  return res
+
 
 def fib_naive(n):
     raise NotImplementedError
