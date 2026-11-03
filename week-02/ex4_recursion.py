@@ -74,5 +74,36 @@ def _fib_naive(n):
         return n
     return _fib_naive(n-1) + _fib_naive(n-2)
 
+# Time: O(n): 2n - 1 calls in total, each doing O(1) work
+#       (dictionary lookup/insertion is O(1) on average, plus one addition).
+#       Values 2 through n are each computed once: n - 1 computations.
+#       Each computation makes 2 recursive calls, giving 2(n - 1) calls,
+#       plus the initial call: 2n - 1.
+
+# Space: O(n): the call stack is at most n frames deep.
+#         The dictionary holds n + 1 entries (keys 0 through n, inclusive).
 def fib_memo(n):
-    raise NotImplementedError
+    if type(n) is not int:
+        raise TypeError("n must be an int")
+    if n < 0:
+        raise ValueError("n must be a non-negative int")
+
+    memo = {
+        0: 0,
+        1: 1
+    }
+
+    return _fib_memo(n, memo)
+
+
+def _fib_memo(n, memo):
+    global call_count
+    call_count += 1
+
+    if n in memo:
+        return memo[n]
+
+    memo[n] = _fib_memo(n - 1, memo) + _fib_memo(n - 2, memo)
+    return memo[n]
+   
+   
