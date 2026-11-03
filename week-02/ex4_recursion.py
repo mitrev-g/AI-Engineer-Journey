@@ -56,8 +56,23 @@ def flatten(nested):
   return res
 
 
+# Time complexity is O(2^n) or O(1.618ⁿ), because (depending on n) each call has to make 2 additional calls, making the amount of calls grow exponentially, and the (n-2) branch is always shorter than the (n-1), that's where 1.618ⁿ is coming from
+# Space complexity is O(n), because there are only n amount of stack frames at the same time, each frame holds O(1) memory, and the maximum depth is n.
 def fib_naive(n):
-    raise NotImplementedError
+    if type(n) is not int:
+       raise TypeError("n must be an int")
+    if n < 0:
+       raise ValueError("n must be a non-negative int")
+    return _fib_naive(n)
+    
+    
+
+def _fib_naive(n):
+    global call_count
+    call_count += 1
+    if n <= 1:
+        return n
+    return _fib_naive(n-1) + _fib_naive(n-2)
 
 def fib_memo(n):
     raise NotImplementedError
