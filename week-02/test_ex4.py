@@ -135,9 +135,11 @@ def test_fib_memo_same_input():
     assert first_counter == second_counter
 # ----- call_count -----
 
-def test_call_count():
+def test_call_count_fib_naive():
     fib_naive(4)
     assert ex4_recursion.call_count == 9
-    ex4_recursion.call_count = 0
+
+def test_call_count_fib_memo():
     fib_memo(30)
     assert ex4_recursion.call_count == 59
+   
