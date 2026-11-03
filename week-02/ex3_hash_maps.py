@@ -76,5 +76,3 @@ class HashMap():
 
 
 
-m = HashMap()
-m.put([1,2], 3)
