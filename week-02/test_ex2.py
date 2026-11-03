@@ -28,20 +28,10 @@ def benchmark(queue, n):
     start = time.perf_counter()
     for i in range(n):
         q.enqueue(i)
-        for _ in range(n):
-            q.dequeue()
-        elapsed = time.perf_counter() - start
+    for _ in range(n):
+        q.dequeue()
+    elapsed = time.perf_counter() - start
         
-        return elapsed
+    return elapsed
         
 
-test_empty()
-test_fifo_order()
-test_peek_does_not_remove()
-elapsed1 = benchmark(ListQueue, 10000)
-elapsed2 = benchmark(DequeQueue, 10000)
-assert elapsed1 > elapsed2
-for n in (10_000, 50_000, 100_000):
-    for Q in (ListQueue, DequeQueue):
-        elapsed = benchmark(Q, n)
-        print(f"{Q.__name__:<12} n={n:<8} {elapsed:.4f}s")

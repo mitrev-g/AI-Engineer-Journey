@@ -1,4 +1,5 @@
 from ex3_hash_maps import HashMap
+import pytest
 
 
 # ---------- put / get ----------
