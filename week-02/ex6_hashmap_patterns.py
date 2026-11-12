@@ -28,7 +28,7 @@ def two_sum(nums: list[int], target: int) -> tuple[int, int] | None:
 
 
 
-
+# has_duplicates_brute
 # Time Complexity: O(n^2) if there are no duplicates: n(n−1)/2
 # Space Complexity: O(1), no additional space needed, we don't store anything
 def has_duplicates_brute(nums: list[int]) -> bool:
@@ -38,6 +38,8 @@ def has_duplicates_brute(nums: list[int]) -> bool:
                 return True
     return False
 
+
+# has_duplicates
 # Time Complexity: O(n): O(n) times checks in the set x O(1) work for checking in set
 # Space Complexity: O(n): If there are no duplicates, the size of the set will grow to amount of elements in n
 def has_duplicates(nums: list[int]) -> bool:
@@ -47,3 +49,41 @@ def has_duplicates(nums: list[int]) -> bool:
             return True
         seen.add(num)
     return False
+
+
+
+# first_unique_char_brute
+# Time: O(n²), n = len(s): for each index, scans the whole string for a twin;
+#   worst case (no unique char) n·(n−1) comparisons.
+# Space: O(1): only the indices i, j and the flag, a constant amount regardless of n.
+def first_unique_char_brute(s: str) -> int:
+    for i in range(len(s)):
+        duplicate = False
+
+        for j in range(len(s)):
+            if i != j and s[i] == s[j]:
+                duplicate = True
+                break
+
+        if not duplicate:
+            return i
+
+    return -1
+
+
+# first_unique_char
+# Time: O(n), n = len(s): one counting pass O(n), one pass over the dict O(k),
+#   and s.index runs at most once (it returns), O(n). Total O(n).
+#   The dict pass works because dicts keep insertion order (Python 3.7+),
+#   so keys come out in order of first appearance.
+# Space: O(min(n, k)), k = number of distinct characters possible (the alphabet);
+#   O(1) for a fixed alphabet like 26 lowercase letters.
+def first_unique_char(s: str) -> int:
+    chars: dict[str, int] = {}
+    for ch in s:
+        chars[ch] = chars.get(ch, 0) + 1 
+
+    for ch in chars:
+        if chars[ch] == 1:
+            return s.index(ch)
+    return -1
