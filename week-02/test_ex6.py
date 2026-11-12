@@ -1,8 +1,8 @@
-from ex6_hashmap_patterns import two_sum_brute, two_sum
+from ex6_hashmap_patterns import two_sum_brute, two_sum, has_duplicates, has_duplicates_brute
 import pytest
 import random
 
-
+# ---------- two_sum ----------
 TWO_SUMS = [two_sum_brute, two_sum]
 
 @pytest.mark.parametrize('fn', TWO_SUMS)
@@ -32,3 +32,36 @@ def test_two_sum_differential():
             assert fast is not None        # a pair exists, so fast must find one too
             assert is_valid_pair(arr, target, brute)
             assert is_valid_pair(arr, target, fast)
+
+# ---------- has_duplicates ----------
+
+HAS_DUPL = [has_duplicates_brute, has_duplicates]
+
+@pytest.mark.parametrize('fn', HAS_DUPL)
+def test_has_duplicates(fn):
+    assert fn([1, 2, 3, 4]) is False
+    assert fn([1, 2, 3, 1]) is True
+    assert fn([]) is False
+    assert fn([1]) is False
+    assert fn([5, 5]) is True
+    assert fn([-1, 1, -1]) is True
+
+
+def test_has_duplicates_differential():
+    random.seed(42)
+    for _ in range(100):
+        length = random.randint(0, 20)
+        arr = [random.randint(-10, 10) for _ in range(length)]
+        assert has_duplicates_brute(arr) == has_duplicates(arr)
+
+
+@pytest.mark.parametrize("fn", HAS_DUPL)
+def test_has_duplicates_input_not_changed(fn):
+    random.seed(42)
+    for _ in range(10):
+        nums = [random.randint(-10, 10) for _ in range(20)]
+        original = nums.copy()
+        fn(nums)
+        assert nums == original
+
+    
