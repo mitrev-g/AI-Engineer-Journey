@@ -87,3 +87,36 @@ def first_unique_char(s: str) -> int:
         if chars[ch] == 1:
             return s.index(ch)
     return -1
+
+
+# group_anagrams_brute
+# Time: O(n² · m log m) worst case, n = number of words, m = max word length:
+#   when no words are anagrams, word k compares against k groups → n(n−1)/2
+#   comparisons, each re-sorting group[0] at O(m log m).
+# Space: O(n · m): the groups store every word (up to m chars each).
+def group_anagram_brute(words: list[str]) -> list[list[str]]:
+    groups: list[list[str]] = []
+    for word in words:
+        matching = False
+        key = sorted(word)
+        for group in groups:
+            if sorted(group[0]) == key:
+                group.append(word)
+                matching = True
+                break
+        if not matching:
+            groups.append([word])
+    return groups
+        
+# group_anagrams
+# Time: O(n · m log m), n = number of words, m = max word length:
+#   one pass over the words; each key sorts one word's letters, O(m log m),
+#   and the dict lookup/insert (hashing an m-char key) is O(m), dominated by the sort.
+# Space: O(n · m): the dict's lists hold every word (up to m chars each),
+#   plus at most n keys of up to m chars.
+def group_anagram(words: list[str]) -> list[list[str]]:
+    groups: dict[str, list[str]] = {}
+    for word in words:
+        key = "".join(sorted(word))
+        groups.setdefault(key, []).append(word)
+    return list(groups.values())
