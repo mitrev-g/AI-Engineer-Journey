@@ -1,4 +1,4 @@
-from ex6_hashmap_patterns import two_sum_brute, two_sum, has_duplicates, has_duplicates_brute, first_unique_char, first_unique_char_brute
+from ex6_hashmap_patterns import two_sum_brute, two_sum, has_duplicates, has_duplicates_brute, first_unique_char, first_unique_char_brute, group_anagram, group_anagram_brute
 import pytest
 import random
 
@@ -83,3 +83,28 @@ def test_first_unique_char_differential():
         length = random.randint(0, 15)
         rand_str = ("".join(random.choice("abc") for _ in range(length)))
         assert first_unique_char_brute(rand_str) == first_unique_char(rand_str)
+
+
+# ---------- group_anagram ----------
+
+ANAGRAM = [group_anagram_brute, group_anagram]
+def normalise(groups: list[list[str]]) -> list[list[str]]:
+    return sorted(sorted(group) for group in groups)
+
+@pytest.mark.parametrize('fn', ANAGRAM)
+def test_group_anagram(fn):
+    assert normalise(fn(["eat", "tea", "tan", "ate", "nat", "bat"])) == normalise([["eat","tea","ate"], ["tan","nat"], ["bat"]])
+    assert normalise(fn([])) == normalise([])
+    assert normalise(fn(["abc"])) == normalise([["abc"]])
+    assert normalise(fn(["abc", "bca", "cab"])) == normalise([["abc","bca","cab"]])
+    assert normalise(fn(["abc", "def", "ghi"])) == normalise([["abc"], ["def"], ["ghi"]])
+    assert normalise(fn(["a", "a"])) == normalise([["a","a"]])
+    assert normalise(fn(["aab", "abb"])) == normalise([["aab"], ["abb"]])
+    assert normalise(fn(["ab", "abb"])) == normalise([["ab"], ["abb"]])
+    assert normalise(fn(["", ""])) == normalise([["", ""]])
+
+def test_group_anagram_differential():
+    random.seed(42)
+    for _ in range(100):
+        words = ["".join(random.choice('abc') for _ in range(random.randint(0, 4))) for _ in range(10)]
+        assert normalise(group_anagram(words)) == normalise(group_anagram_brute(words))
