@@ -26,3 +26,24 @@ def two_sum(nums: list[int], target: int) -> tuple[int, int] | None:
         seen[num] = i
     return None
 
+
+
+
+# Time Complexity: O(n^2) if there are no duplicates: n(n−1)/2
+# Space Complexity: O(1), no additional space needed, we don't store anything
+def has_duplicates_brute(nums: list[int]) -> bool:
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] == nums[j]:
+                return True
+    return False
+
+# Time Complexity: O(n): O(n) times checks in the set x O(1) work for checking in set
+# Space Complexity: O(n): If there are no duplicates, the size of the set will grow to amount of elements in n
+def has_duplicates(nums: list[int]) -> bool:
+    seen: set[int] = set()
+    for num in nums:
+        if num in seen:
+            return True
+        seen.add(num)
+    return False
