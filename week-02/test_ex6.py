@@ -1,4 +1,4 @@
-from ex6_hashmap_patterns import two_sum_brute, two_sum, has_duplicates, has_duplicates_brute
+from ex6_hashmap_patterns import two_sum_brute, two_sum, has_duplicates, has_duplicates_brute, first_unique_char, first_unique_char_brute
 import pytest
 import random
 
@@ -65,3 +65,21 @@ def test_has_duplicates_input_not_changed(fn):
         assert nums == original
 
     
+# ---------- first_unique_char ----------
+CHARS = [first_unique_char_brute, first_unique_char]
+
+@pytest.mark.parametrize('fn', CHARS)
+def test_first_unique_char(fn):
+    assert fn('leetcode') == 0
+    assert fn('loveleetcode') == 2
+    assert fn('aabb') == -1
+    assert fn('') == -1
+    assert fn('z') == 0
+    assert fn('aabbc') == 4
+
+def test_first_unique_char_differential():
+    random.seed(42)
+    for _ in range(100):
+        length = random.randint(0, 15)
+        rand_str = ("".join(random.choice("abc") for _ in range(length)))
+        assert first_unique_char_brute(rand_str) == first_unique_char(rand_str)
