@@ -1,4 +1,4 @@
-from ex6_hashmap_patterns import two_sum_brute, two_sum, has_duplicates, has_duplicates_brute, first_unique_char, first_unique_char_brute, group_anagram, group_anagram_brute, max_window_sum, max_window_sum_brute
+from ex6_hashmap_patterns import two_sum_brute, two_sum, has_duplicates, has_duplicates_brute, first_unique_char, first_unique_char_brute, group_anagram, group_anagram_brute, max_window_sum, max_window_sum_brute, longest_unique_substring, longest_unique_substring_brute
 import pytest
 import random
 
@@ -133,3 +133,23 @@ def test_max_window_sum_differential():
         nums = [random.randint(-10, 10) for _ in range(random.randint(0, 15))]
         k = random.randint(1, len(nums) + 2)
         assert max_window_sum(nums, k) == max_window_sum_brute(nums, k)
+
+# ---------- longest_unique_substring ----------
+
+LONGEST = [longest_unique_substring_brute, longest_unique_substring]
+
+@pytest.mark.parametrize('fn', LONGEST)
+def test_longest_unique_substring(fn):
+    assert fn("abcabcbb") == 3
+    assert fn("bbbbb") == 1
+    assert fn("pwwkew") == 3
+    assert fn("") == 0
+    assert fn("abcdef") == 6
+    assert fn("abba") == 2
+    assert fn("a") == 1
+
+def test_longest_unique_substring_differential():
+    random.seed(42)
+    for _ in range(100):
+        word = ("".join(random.choice('abcd') for _ in range(random.randint(0, 15))))
+        assert longest_unique_substring(word) == longest_unique_substring_brute(word)
