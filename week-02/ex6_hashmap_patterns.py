@@ -159,3 +159,42 @@ def max_window_sum(nums: list[int], k: int) -> int | None:
         if window_sum > best:
             best = window_sum
     return best
+
+
+# longest_unique_substring_brute
+# Time: O(n²) worst case, n = len(s): for each start index, extend right until a
+#   repeat; with all-unique text each start scans to the end → n(n+1)/2 steps.
+#   (With a bounded alphabet of k chars, each scan stops within k+1 steps → O(n·k).)
+# Space: O(min(n, k)), k = alphabet size: the set holds one window's distinct chars.
+def longest_unique_substring_brute(s: str) -> int:
+    best = 0
+    for i in range(len(s)):
+        letters: set[str] = set()
+        for j in range(i, len(s)):
+            if s[j] in letters:  
+                break
+            else:
+                letters.add(s[j])
+            if len(letters) > best:
+                best = len(letters)
+    return best
+
+
+# longest_unique_substring
+# Time: O(n), n = len(s): both pointers only move forward; each char is added once
+#   and removed at most once → at most 2n set operations (amortized analysis).
+# Space: O(min(n, k)), k = alphabet size: the set holds the current window.
+def longest_unique_substring(s: str) -> int:
+    best = 0
+    left = 0
+    window: set[str] = set()
+    for right in range(len(s)):
+        while s[right] in window:
+            window.remove(s[left])
+            left += 1
+        window.add(s[right])
+        if len(window) > best:
+            best = len(window)
+
+
+    return best
