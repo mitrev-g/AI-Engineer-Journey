@@ -120,3 +120,42 @@ def group_anagram(words: list[str]) -> list[list[str]]:
         key = "".join(sorted(word))
         groups.setdefault(key, []).append(word)
     return list(groups.values())
+
+
+
+# max_window_sum_brute
+# Time: O(n · k), n = len(nums), k = window size: n − k + 1 windows,
+#   each summed from scratch with k additions.
+# Space: O(1): only the current sum and the best sum so far.
+def max_window_sum_brute(nums: list[int], k: int) -> int | None:
+    if k <= 0:
+        raise ValueError("k must be a positive int")
+    length = len(nums)
+    if k > length:
+        return None
+    biggest = sum(nums[:k])
+    for i in range(1, length - k + 1):
+        new = 0
+        for j in range(k):
+            new += nums[i + j]
+        if new > biggest:
+            biggest = new
+    return biggest
+
+# max_window_sum
+# Time: O(n), n = len(nums): first window O(k), then n − k slides at O(1) each
+#   (one subtraction, one addition). Total O(n) regardless of k.
+# Space: O(1): only window_sum and best (if the first window is summed without slicing).
+def max_window_sum(nums: list[int], k: int) -> int | None:
+    if k <= 0:
+        raise ValueError("k must be a positive int")
+    length = len(nums)
+    if k > length:
+        return None
+    window_sum = sum(nums[:k])
+    best = window_sum
+    for i in range(k, length):
+        window_sum = window_sum - nums[i - k] + nums[i]
+        if window_sum > best:
+            best = window_sum
+    return best
