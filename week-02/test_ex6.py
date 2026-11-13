@@ -1,4 +1,4 @@
-from ex6_hashmap_patterns import two_sum_brute, two_sum, has_duplicates, has_duplicates_brute, first_unique_char, first_unique_char_brute, group_anagram, group_anagram_brute
+from ex6_hashmap_patterns import two_sum_brute, two_sum, has_duplicates, has_duplicates_brute, first_unique_char, first_unique_char_brute, group_anagram, group_anagram_brute, max_window_sum, max_window_sum_brute
 import pytest
 import random
 
@@ -108,3 +108,28 @@ def test_group_anagram_differential():
     for _ in range(100):
         words = ["".join(random.choice('abc') for _ in range(random.randint(0, 4))) for _ in range(10)]
         assert normalise(group_anagram(words)) == normalise(group_anagram_brute(words))
+
+# ---------- max_window_sum ----------
+
+WINDOW_SUM = [max_window_sum_brute, max_window_sum]
+
+@pytest.mark.parametrize('fn', WINDOW_SUM)
+def test_max_window_sum(fn):
+    assert fn([2, 1, 5, 1, 3, 2], 3) == 9
+    assert fn([2, 1, 5, 1, 3, 2], 1) == 5
+    assert fn([2, 1, 5, 1, 3, 2], 6) == 14
+    assert fn([-3, -1, -2], 2) == -3
+    assert fn([1, 2], 3) is None 
+    assert fn([], 1) is None 
+
+@pytest.mark.parametrize('fn', WINDOW_SUM)
+def test_max_window_sum_negative_k(fn):
+    with pytest.raises(ValueError):
+        fn([1,2,3], 0)
+
+def test_max_window_sum_differential():
+    random.seed(42)
+    for _ in range(100):
+        nums = [random.randint(-10, 10) for _ in range(random.randint(0, 15))]
+        k = random.randint(1, len(nums) + 2)
+        assert max_window_sum(nums, k) == max_window_sum_brute(nums, k)
