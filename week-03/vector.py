@@ -6,7 +6,7 @@ class Vector():
         self.body = vec
 
     def __repr__(self) -> str:
-        return f'Vector({self.body})'
+        return f'{type(self).__name__}({self.body})'
 
     def __len__(self) -> int:
         return len(self.body)
@@ -18,7 +18,7 @@ class Vector():
     # - Worst case scenario is all elements of the vector are matching. We have to go through each individual element. 
     # Space Complexity - O(1) - We don't store anything
     def __eq__(self, vec: Vector) -> bool:
-        if type(vec) != Vector:
+        if not isinstance(vec, Vector):
             return NotImplemented
         return self.body == vec.body
 
@@ -26,7 +26,7 @@ class Vector():
     # - We go through the loop n times each doing O(1) of work.
     # Space Complexity - O(n), res - holding a list with the same length as the input vectors
     def __add__(self, vec: object) -> Vector:
-        if type(vec) != Vector:
+        if not isinstance(vec, Vector):
             return NotImplemented
         if len(self.body) != len(vec.body):
             raise ValueError("Both vectors must be of same length.")
@@ -39,7 +39,7 @@ class Vector():
     # - We run the loop n times, doing O(1) of work
     # Space Complexity - O(n) - list with the same length as input vectors
     def dot(self, vec: Vector) -> float:
-        if type(vec) != Vector:
+        if not isinstance(vec, Vector):
             raise TypeError("vec must be of type Vector")
         if len(self.body) != len(vec.body):
             raise ValueError("Both vectors must have equal length")
