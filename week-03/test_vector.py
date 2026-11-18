@@ -1,6 +1,13 @@
 from vector import Vector
 import pytest
 
+
+def test_vector_change_after_init():
+    data = [1, 2]
+    v = Vector(data)
+    data.append(3)
+    data[0] = 99
+    assert v == Vector([1, 2])
 def test_vector_empty():
     with pytest.raises(ValueError):
         Vector([])
@@ -37,3 +44,11 @@ def test_vector_dot_product():
 def test_vector_sum_diff_lengths():
     with pytest.raises(ValueError):
         Vector([1, 2]) + Vector([1, 2, 3])
+
+def test_vector_add_error():
+    with pytest.raises(TypeError):
+        Vector([1, 2]) + 5
+
+def test_vector_dot_error():
+    with pytest.raises(TypeError):
+        Vector([1, 2]).dot("hello")
