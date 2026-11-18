@@ -52,3 +52,11 @@ def test_vector_add_error():
 def test_vector_dot_error():
     with pytest.raises(TypeError):
         Vector([1, 2]).dot("hello")
+
+def test_vector_subclass():
+    class UnitVector(Vector):
+        pass
+    a = UnitVector([1, 2])
+    b = UnitVector([1, 2])
+    assert a == b
+    assert repr(UnitVector([1, 2])) == 'UnitVector([1, 2])'
