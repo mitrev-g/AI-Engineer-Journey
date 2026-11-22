@@ -45,6 +45,16 @@ def test_gen_config_max_tokens_zero():
     with pytest.raises(ValueError):
         gencon.max_tokens = 0
 
+def test_gen_config_max_tokens_float():
+    gencon = GenerationConfig()
+    with pytest.raises(TypeError):
+        gencon.max_tokens = 2.5
+
+def test_gen_config_max_tokens_bool():
+    gencon = GenerationConfig()
+    with pytest.raises(TypeError):
+        gencon.max_tokens = True
+
 def test_gen_config_max_tokens_string():
     gencon = GenerationConfig()
     with pytest.raises(TypeError):
