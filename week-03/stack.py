@@ -54,4 +54,3 @@ class EmptyStackError(StackError):
     The Stack is empty.
     '''
 
-print("hello")

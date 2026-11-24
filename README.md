@@ -1,3 +1,5 @@
+but h
+
 # AI Engineering Journey
 
 I'm working towards becoming an AI engineer by building projects, studying the theory behind them, and improving my software engineering skills along the way.
@@ -9,6 +11,7 @@ I want to understand how things work, be able to implement them myself, and lear
 ## Roadmap
 
 ### 1. Programming and computer science
+
 - [ ] Python fundamentals, OOP, and type hints
 - [ ] Git, GitHub, Linux, and command-line tools
 - [ ] Data structures and algorithms
@@ -16,6 +19,7 @@ I want to understand how things work, be able to implement them myself, and lear
 - [ ] Testing, debugging, and clean code
 
 ### 2. Mathematics and data analysis
+
 - [ ] Descriptive and inferential statistics
 - [ ] Probability and common distributions
 - [ ] Linear algebra
@@ -24,6 +28,7 @@ I want to understand how things work, be able to implement them myself, and lear
 - [ ] Exploratory data analysis
 
 ### 3. Machine learning
+
 - [ ] Linear and logistic regression
 - [ ] Decision trees, random forests, and gradient boosting
 - [ ] Feature engineering and preprocessing
@@ -33,6 +38,7 @@ I want to understand how things work, be able to implement them myself, and lear
 - [ ] Overfitting, regularization, and data leakage
 
 ### 4. Deep learning
+
 - [ ] Neural networks and backpropagation
 - [ ] Gradient descent and optimization
 - [ ] PyTorch
@@ -41,6 +47,7 @@ I want to understand how things work, be able to implement them myself, and lear
 - [ ] Transformers and attention
 
 ### 5. NLP and generative AI
+
 - [ ] Text preprocessing and tokenization
 - [ ] Traditional NLP and text classification
 - [ ] Pretrained language models
@@ -51,6 +58,7 @@ I want to understand how things work, be able to implement them myself, and lear
 - [ ] LLM evaluation, tool calling, and AI agents
 
 ### 6. Software engineering and system design
+
 - [ ] REST APIs with FastAPI
 - [ ] SQL and PostgreSQL
 - [ ] Unit and integration testing
@@ -66,18 +74,18 @@ I want to understand how things work, be able to implement them myself, and lear
 
 I'll add projects as I work through the roadmap. Each project should help me apply what I've learned and identify gaps in my understanding.
 
-| Project | Main topics | Status |
-|---|---|---|
-| Data analysis and exploratory data analysis | Python, pandas, statistics, visualization | Planned |
-| House price prediction | Regression, feature engineering, evaluation | Planned |
-| Customer churn prediction API | Classification, FastAPI, testing, Docker | Planned |
-| Movie recommendation system | Similarity, collaborative filtering, ranking | Planned |
-| Neural network from scratch | NumPy, gradients, backpropagation | Planned |
-| Image classification with PyTorch | Deep learning, training, evaluation | Planned |
-| NLP text classifier | Transformers, embeddings, fine-tuning | Planned |
-| Document Q&A system | RAG, vector search, LLM evaluation | Planned |
-| Tool-using AI agent | Tool calling, state, error handling | Planned |
-| Production AI service | Deployment, monitoring, system design | Planned |
+| Project                                     | Main topics                                  | Status  |
+| ------------------------------------------- | -------------------------------------------- | ------- |
+| Data analysis and exploratory data analysis | Python, pandas, statistics, visualization    | Planned |
+| House price prediction                      | Regression, feature engineering, evaluation  | Planned |
+| Customer churn prediction API               | Classification, FastAPI, testing, Docker     | Planned |
+| Movie recommendation system                 | Similarity, collaborative filtering, ranking | Planned |
+| Neural network from scratch                 | NumPy, gradients, backpropagation            | Planned |
+| Image classification with PyTorch           | Deep learning, training, evaluation          | Planned |
+| NLP text classifier                         | Transformers, embeddings, fine-tuning        | Planned |
+| Document Q&A system                         | RAG, vector search, LLM evaluation           | Planned |
+| Tool-using AI agent                         | Tool calling, state, error handling          | Planned |
+| Production AI service                       | Deployment, monitoring, system design        | Planned |
 
 Project status will change as I build and document each one.
 
@@ -86,6 +94,7 @@ Project status will change as I build and document each one.
 I'll study DSA throughout the journey, with a focus on understanding the trade-offs behind different solutions.
 
 Topics include:
+
 - Arrays, strings, hash maps, and sets
 - Linked lists, stacks, and queues
 - Searching and sorting algorithms
